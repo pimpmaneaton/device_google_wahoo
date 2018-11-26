@@ -362,10 +362,6 @@
     <!-- Specify if the fingerprint hardware support gestures-->
     <bool name="config_fingerprintSupportsGestures">true</bool>
 
-    <!-- make sure you enable this only if your device supports deep slepp
-    with active proximity sensor event listener -->
-    <bool name="config_proxiSensorWakupCheck">true</bool>
-
     <!-- Specify model in case of attestation failure due to misprovisioned device. -->
     <string name="config_misprovisionedDeviceModel" translatable="false">Pixel 2</string>
 
