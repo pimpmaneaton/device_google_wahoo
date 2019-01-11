@@ -36,7 +36,7 @@ PRODUCT_COPY_FILES += \
 
 # Set the SVN for the targeted MR release
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.svn=21
+    ro.vendor.build.svn=22
 
 # Enforce privapp-permissions whitelist
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -54,7 +54,7 @@ SRC_CAMERA_HAL_DIR := hardware/qcom/camera/msm8998
 TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # Get kernel-headers
-# $(call inherit-product, hardware/qcom/msm8998/msm8998.mk)
+$(call inherit-product, hardware/qcom/msm8998/msm8998.mk)
 
 $(call inherit-product, device/google/wahoo/utils.mk)
 
@@ -309,8 +309,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi_concurrency_cfg.txt:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wifi_concurrency_cfg.txt
 
 #ipacm configuration files
-#PRODUCT_COPY_FILES += \
-#    hardware/qcom/data/ipacfg-mgr/msm8998/ipacm/src/IPACM_cfg.xml:$(TARGET_COPY_OUT_VENDOR)/etc/IPACM_cfg.xml
+PRODUCT_COPY_FILES += \
+    hardware/qcom/data/ipacfg-mgr/msm8998/ipacm/src/IPACM_cfg.xml:$(TARGET_COPY_OUT_VENDOR)/etc/IPACM_cfg.xml
 
 PRODUCT_PACKAGES += \
     hwcomposer.msm8998 \
@@ -328,12 +328,9 @@ PRODUCT_PACKAGES += \
 
 # Light HAL
 PRODUCT_PACKAGES += \
-    lights.$(PRODUCT_HARDWARE)_sys \
+    lights.$(PRODUCT_HARDWARE) \
     android.hardware.light@2.0-impl:64 \
     android.hardware.light@2.0-service
-
-# Lights
-PRODUCT_PROPERTY_OVERRIDES += ro.hardware.lights=$(PRODUCT_HARDWARE)_sys
 
 # eSE applet HALs
 PRODUCT_PACKAGES += \
@@ -580,7 +577,7 @@ PRODUCT_COPY_FILES += \
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 # Subsystem ramdump
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.ssr.enable_ramdumps=0
+    persist.sys.ssr.enable_ramdumps=1
 endif
 
 # Subsystem silent restart
